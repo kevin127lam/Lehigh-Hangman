@@ -37,10 +37,10 @@
     </select>
 
     <br> Keyword
-    <input type="text" id="title" /></input>
+    <input type="text" id="keyword" /></input>
 
     <br>
-    <button type="button" id="seatch">Search</button>
+    <button type="button" id="search">Search</button>
 
     <div class=buttons>
       <button type="button" id="prev">Prev</button>
@@ -65,11 +65,11 @@
           <th style="padding-right: 17em;">Artist</th>
         </tr>
       </thead>
-      <tbody id="bookrows">
+      <tbody id="songs">
       </tbody>
     </table>
   </div>
-
+  <span id="page-num" style="display: none;"></span>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" crossorigin="anonymous"></script>
   <script src="js/vendor/jquery.min.js" crossorigin="anonymous"></script>
