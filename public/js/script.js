@@ -26,7 +26,8 @@ $(() => {
         console.log("Keyword:", keyword);
         console.log("Display Per Page:", displayPerPage);
 
-        //alert(keyword);
+        //sets page num to default
+        $("#page-num").text(pageNum);
         fetchSongs(artist, keyword, displayPerPage, pageNum);
     });
 
@@ -37,6 +38,8 @@ $(() => {
         let displayPerPage = $("#display").val();
         let pageNum = parseInt($("#page-num").text()) - 1;
         fetchSongs(artist, keyword, displayPerPage, pageNum);
+        //updates page num accordingly
+        $("#page-num").text(pageNum);
     });
 
     $("#next").click(function () {
@@ -45,6 +48,7 @@ $(() => {
         let displayPerPage = $("#display").val();
         let pageNum = parseInt($("#page-num").text()) + 1;
         fetchSongs(artist, keyword, displayPerPage, pageNum);
+        $("#page-num").text(pageNum);
     });
 });
 
@@ -84,14 +88,14 @@ function displaySongs(data) {
     }
 
     // Show/hide prev/next buttons based on current page
-    const currentPage = parseInt($("#page-num").text());
 
-    //attempt to "blur out" next button once the end is reach *NOT WORKING*
-    const totalPageCount = Math.ceil(data.totalCount / $("#display").val());
-    if (currentPage === totalPageCount) {
-        $("#next").prop("disabled", true);
+    // Show/hide prev/next buttons based on current page
+    const currentPage = parseInt($("#page-num").text());
+    console.log("Current page", currentPage);
+    if (currentPage === 1) {
+        $("#prev").prop("disabled", true);
     } else {
-        $("#next").prop("disabled", false);
+        $("#prev").prop("disabled", false);
     }
 }
 
