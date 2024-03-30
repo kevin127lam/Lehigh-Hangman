@@ -1,3 +1,93 @@
+/* General styles */
+body {
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  background-color: #f1ebe1;
+}
+
+h1 {
+  color: #8ba888;
+  text-align: center;
+}
+
+/* Form styles */
+form {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+form input[type="text"],
+form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+form button {
+  padding: 10px 20px;
+  margin: 10px;
+  background-color: #8ba888;
+  color: #ffffff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #44624a;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.table-container {
+  position: relative;
+}
+
+
+#page-number,
+#song-info,
+#page-num {
+  text-align: center;
+}
+
+#page-num {
+  display: block; /* Change display to block to ensure it's displayed properly */
+}
+
+
+#songtable th,
+#songtable td {
+  padding: 10px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+#songtable th {
+  text-align: left;
+  background-color: #8ba888;
+  color: #ffffff;
+}
+
+#songtable tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+/* Pagination button styles */
+.buttons button {
+  margin-right: 10px;
+}
+
+
+
+
 /*! HTML5 Boilerplate v9.0.0-RC1 | MIT License | https://html5boilerplate.com/ */
 
 /* main.css 3.0.0 | MIT License | https://github.com/h5bp/main.css#readme */

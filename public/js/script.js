@@ -20,12 +20,7 @@ $(() => {
         let keyword = $("#keyword").val();
         let displayPerPage = $("#display").val();
         let pageNum = 1;
-
-        // Log the query parameters to the console for error checking
-        console.log("Artist:", artist);
-        console.log("Keyword:", keyword);
-        console.log("Display Per Page:", displayPerPage);
-
+        
         //sets page num to default
         $("#page-num").text(pageNum);
         fetchSongs(artist, keyword, displayPerPage, pageNum);
@@ -66,14 +61,25 @@ function fetchSongs(artist, keyword, displayPerPage, pageNum) {
         },
         success: function (data) {
             displaySongs(data);
-            $("#page-num").text(pageNum);
+            updatePage(data); // Update song info below the table
+            // Update the page number on the screen
+            $("#page-number").text("Page " + pageNum);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.error("Error: " + errorThrown);
         }
     });
 }
+// updates song and page info
+function updatePage(data) {
+    const totalCount = data.totalCount;
+    const displayPerPage = parseInt($("#display").val());
+    const currentPage = parseInt($("#page-num").text());
+    const firstIndex = (currentPage - 1) * displayPerPage + 1;
+    const lastIndex = firstIndex + displayPerPage - 1
 
+    $("#song-info").text(`Songs ${firstIndex} to ${lastIndex} out of ${totalCount}`);
+}
 //print songs and values onto the table
 function displaySongs(data) {
     $("#songs").empty();
@@ -88,15 +94,23 @@ function displaySongs(data) {
     }
 
     // Show/hide prev/next buttons based on current page
-
-    // Show/hide prev/next buttons based on current page
     const currentPage = parseInt($("#page-num").text());
-    console.log("Current page", currentPage);
+    const totalCount = data.totalCount;
+    const displayPerPage = parseInt($("#display").val());
+    const totalPages = Math.ceil(totalCount / displayPerPage);
+
     if (currentPage === 1) {
         $("#prev").prop("disabled", true);
     } else {
         $("#prev").prop("disabled", false);
     }
+
+    if (currentPage >= totalPages) {
+        $("#next").prop("disabled", true);
+    } else {
+        $("#next").prop("disabled", false);
+    }
+
 }
 
 // Function to fetch artist names from server and populate dropdown
