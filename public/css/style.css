@@ -33,7 +33,30 @@ body {
 }
 
 .laf-box img {
-  max-width: 600px;
+  max-width: 300px;
+}
+
+.word-display {
+  display: flex;
+  list-style: none;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.word-display .letter {
+  width: 28px;
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  border-bottom: 3px solid #000;
+}
+
+.word-display .letter.guessed {
+  border-color: transparent;
+  margin: -40px 0 35px;
 }
 
 .game-box .keyboard {
@@ -44,6 +67,10 @@ body {
 }
 
 .keyboard button {
+  color: white;
+  border-radius: 10px;
+  background-color: #492201;
+  border-color: gold;
   width: calc(100% / 9 - 5px);
   padding: 5px;
 }
