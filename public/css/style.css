@@ -30,6 +30,14 @@ body {
   display: flex;
   width: 750px;
   background-color: white;
+  padding: 20px;
+  margin-top: 20px;
+  justify-content: space-around;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 50px;
 }
 
 .laf-box img {
@@ -57,6 +65,31 @@ body {
 .word-display .letter.guessed {
   border-color: transparent;
   margin: -40px 0 35px;
+}
+
+.categories{
+  margin-bottom: 80px;
+}
+
+.game-box .categories {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.categories button {
+  color: white;
+  border-radius: 10px;
+  background-color: #492201;
+  border-color: gold;
+  width: calc(100% / 5 - 10px);
+  padding: 5px
+}
+
+.keyboard button[disabled] {
+  opacity: 0.4;
+  pointer-events: none;
 }
 
 .game-box .keyboard {
