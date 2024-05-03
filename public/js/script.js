@@ -36,7 +36,23 @@ const init = (button, usedLetter) => {
         wrongGuessCount++;
         document.querySelector(".laf-box img").src = `../img/lep${wrongGuessCount}.jpg`;
     }
+    if(wrongGuessCount === 6){
+        return gameStatus(false);
+    } if(correctLetters.length === currentWord.length){
+        return gameStatus(true);
+    }
     document.querySelector(".guess-display").innerText = `${wrongGuessCount} / 6 `;
+}
+
+const gameStatus = (isVictory) => {
+    setTimeout(() => {
+        const statusOutput = isVictory ? `You found the word: ` : `The correct word was: `;
+        const gameStatus = document.querySelector(".game-status");
+        gameStatus.querySelector("img").src = `../img/${isVictory ? 'win' : 'loss'}.gif`;
+        gameStatus.querySelector("h4").innerText = `${isVictory ? 'Congrats!' : 'Game Over!'}`;
+        gameStatus.querySelector("p").innerHTML = `${statusOutput}<b>${currentWord}</b>`;
+        gameStatus.classList.add("show");
+    }, 600);
 }
 
 // create the keyboard
