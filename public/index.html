@@ -20,66 +20,32 @@
 
   <link rel="manifest" href="site.webmanifest">
   <meta name="theme-color" content="#fafafa">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-    rel="stylesheet">
 </head>
 
 <body>
-  <div class="container">
-    <h1>Welcome to the Top 40 Songs App</h1>
-    <form id="form" style="float: left">
 
-      <br> Artists:
-      <select id="artists" name="artists">
-        <option value="none">None</option>
-      </select>
-
-      <br> Keyword
-      <input type="text" id="keyword" /></input>
-
-      <br>
-      <button type="button" id="search">Search</button>
-
-      <div class=buttons>
-        <button type="button" id="prev">Prev</button>
-        <button type="button" id="next">Next</button>
-      </div>
-
-      Display per page:
-      <select id="display">
-        <option value="5">5</option>
-        <option value="10">10</option>
-        <option value="25">25</option>
-        <option value="50">50</option>
-      </select>
-    </form>
-
-    <div class="table-container">
-      <div id="table" style="float: left">
-        <table id="songtable" style="border: 5px solid black;">
-          <thead>
-            <tr>
-              <th style="padding-right: 5em;">Number</th>
-              <th style="padding-right: 18em;">Title</th>
-              <th style="padding-right: 17em;">Artist</th>
-            </tr>
-          </thead>
-          <tbody id="songs">
-          </tbody>
-        </table>
+  <div class="game-body">
+    <div class="game-box">
+      <h1>Hangman</h1>
+      <ul class="word-display">
+        <p>Word Test</p>
+      </ul>
+      <h4 class="hint-display">
+        Hint:
+        <p>Hint Test</p>
+      </h4>
+      <h4 class="guess-display">
+        Incorrect guesses:
+        <p>Guess Text</p>
+      </h4>
+      <div class="keyboard">
       </div>
     </div>
-    <div id="page-info" style="clear: both;">
-      <div id="page-number"></div>
-      <div id="song-info"></div>
-      <span id="page-num" style="display: none;">1</span>
+    <div class="laf-box">
+      <img src="img/lep.jpg" alt="laf-img">
     </div>
   </div>
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" crossorigin="anonymous"></script>
+
   <script src="js/vendor/jquery.min.js" crossorigin="anonymous"></script>
   <script src="js/vendor/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
   <script src="js/script.js"></script>

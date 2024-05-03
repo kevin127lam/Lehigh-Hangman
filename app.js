@@ -1,5 +1,5 @@
 //Kevin Lam - khl225
-const db = require('better-sqlite3')('top40.db');
+const db = require('better-sqlite3')('words.db');
 const express = require("express");
 const path = require("path");
 const { off } = require('process');
@@ -10,34 +10,17 @@ app.use(express.static(
 ));
 
 // query to get the artists from db
-app.get('/artists', (req, res) => {
-  const query = db.prepare('SELECT DISTINCT artist FROM songlist');
-  const artists = query.all().map(row => row.artist);
-  res.json(artists);
-});
+// Function to fetch a random word from the database
+function getRandomWord() {
+  const query = "SELECT * FROM wordslist ORDER BY RANDOM() LIMIT 1";
+  const word = db.prepare(query).get(); // Fetch a single random row
+  return word;
+}
 
-// Endpoint to fetch songs based on search criteria
-app.get('/songs', (req, res) => {
-  const { artist, keyword, displayPerPage, pageNum } = req.query;
-  const offset = (pageNum - 1) * displayPerPage;
-  let query = 'SELECT * FROM songlist';
-
-  if (artist || keyword) {
-    query += ' WHERE ';
-    if (artist) {
-      query += `artist = '${artist}'`;
-      if (keyword) query += ' AND ';
-    }
-    if (keyword) {
-      query += `title LIKE '%${keyword}%'`;
-    }
-  }
-  // Count total number of matching songs
-  let totalCount = db.prepare(query).all().length;
-  query += ` LIMIT ${displayPerPage} OFFSET ${offset}`;
-  const songs = db.prepare(query).all();
-  res.json({ songs, totalCount });
-
+// Route to fetch a random word
+app.get('/random-word', (req, res) => {
+  const word = getRandomWord(); // Get the random word
+  res.json(word); // Return the word as JSON
 });
 
 
