@@ -25,4 +25,4 @@ app.get('/random-word', (req, res) => {
 
 
 
-app.listen(3000, () => console.log("Starting up Top 40 Search"));
+app.listen(3000, () => console.log("Starting up Hangman"));
