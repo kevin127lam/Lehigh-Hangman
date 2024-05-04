@@ -11,11 +11,11 @@ app.use(express.static(
 
 // query to get the artists from db
 // Function to fetch a random word from the database
-function getRandomWord() {
-  const query = "SELECT * FROM morewords where category = 'animals' ORDER BY RANDOM() LIMIT 1";
-  const word = db.prepare(query).get(); // Fetch a single random row
-  return word;
-}
+// function getRandomWord() {
+//   const query = "SELECT * FROM morewords where category = 'animals' ORDER BY RANDOM() LIMIT 1";
+//   const word = db.prepare(query).get(); // Fetch a single random row
+//   return word;
+// }
 
 
 // Route to fetch a random word
