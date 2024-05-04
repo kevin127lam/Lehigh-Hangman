@@ -1,20 +1,45 @@
 let currentWord = [];
-// Function to fetch a random word from the server
-function fetchRandomWord() {
-    fetch('/random-word')
-        .then(response => response.json())
+
+// Function to fetch a random word and hide the game start div
+function fetchRandomWord(category) {
+    let url = '/random-word'; // Base endpoint
+    if (category) {
+        url += `?category=${encodeURIComponent(category)}`; // Add category parameter
+    }
+
+    fetch(url) // Fetch a random word from the server
+        .then(response => response.json()) // Parse the JSON response
         .then(data => {
-            const { word, hint } = data;
-            currentWord = word;
-            document.querySelector(".hint-display p").innerText = hint;
-            document.querySelector(".word-display").innerHTML = word.split("").map(() => `<li class="letter"></li>`).join("");
-            restartGame();
-            console.log(`Word: ${word}, Hint: ${hint}`);
+            if (data) {
+                const { word, hint, category } = data; // Get the word and hint
+                currentWord = word;
+                console.log(`Word: ${word}, Hint: ${hint}, Category: ${category}`);
+                document.querySelector(".hint-display p").innerText = hint;
+                document.querySelector(".word-display").innerHTML = word.split("").map(() => `<li class="letter"></li>`).join("");
+                restartGame();
+                // Hide the game start div
+                // const gameStart = document.querySelector('.game-start');
+                // if (gameStart) {
+                //     gameStart.style.display = 'none'; // Hide the game start div
+                // }
+            } else {
+                console.log("No word found for the specified category.");
+            }
         })
         .catch(error => {
             console.error("Error fetching random word:", error);
         });
 }
+
+// Get all category buttons
+// const categoryButtons = document.querySelectorAll('.categories button');
+
+// categoryButtons.forEach(button => {
+//     button.addEventListener('click', () => {
+//         const category = button.id; // Use the button ID as the category
+//         fetchRandomWord(category); // Fetch a random word
+//     });
+// });
 
 let correctLetters = [];
 let wrongGuessCount = 0;
@@ -81,8 +106,7 @@ document.querySelector(".keyboard").appendChild(button);
 // e.prevent default fixed an error where page was refreshing
 button.addEventListener("click", e => init(e.target, String.fromCharCode(32), e.preventDefault()));
 
-fetchRandomWord();
+fetchRandomWord('food');
 document.querySelector(".play-again").addEventListener('click', () => {
-    restartGame();
-    fetchRandomWord();
+    fetchRandomWord('food');
 });

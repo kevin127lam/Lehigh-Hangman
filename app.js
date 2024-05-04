@@ -12,16 +12,26 @@ app.use(express.static(
 // query to get the artists from db
 // Function to fetch a random word from the database
 function getRandomWord() {
-  const query = "SELECT * FROM morewords ORDER BY RANDOM() LIMIT 1";
+  const query = "SELECT * FROM morewords where category = 'animals' ORDER BY RANDOM() LIMIT 1";
   const word = db.prepare(query).get(); // Fetch a single random row
   return word;
 }
 
+
+// Route to fetch a random word
+// app.get('/random-word', (req, res) => {
+//   const word = getRandomWord(); // Get the random word
+//   res.json(word); // Return the word as JSON
+// });
+
 // Route to fetch a random word
 app.get('/random-word', (req, res) => {
-  const word = getRandomWord(); // Get the random word
-  res.json(word); // Return the word as JSON
+  const category = req.query.category; // Get the random word
+  let query = `SELECT * from morewords where category = '${category}' ORDER BY RANDOM() LIMIT 1`;
+  const words = db.prepare(query).get();
+  res.json(words);
 });
+
 
 
 
