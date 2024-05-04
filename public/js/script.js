@@ -12,14 +12,14 @@ const gameStart = (status) => {
         button.addEventListener('click', () => {
             testCategory = getCategoryFromButton(button); // Get the category from the button
             document.querySelector(".game-start").style.display = "none"; // hide the start game display
-            document.querySelector(".game-body").style.display = "block";   //show the game body
+            document.querySelector(".game-body").style.display = "flex";   //show the game body
             fetchRandomWord(testCategory);
         });
     });
 }
 gameStart();
 let currentWord = [];
-//fetchRandomWord('animals');
+
 // Function to fetch a random word and hide the game start div
 function fetchRandomWord(category) {
     let url = '/random-word'; // Base endpoint
@@ -35,6 +35,7 @@ function fetchRandomWord(category) {
                 const { word, hint, category } = data; // Get the word and hint
                 currentWord = word;
                 console.log(`Word: ${word}, Hint: ${hint}, Category: ${category}`);
+                document.querySelector(".category-display").innerHTML = category.toUpperCase();
                 document.querySelector(".hint-display p").innerText = hint;
                 document.querySelector(".word-display").innerHTML = word.split("").map(() => `<li class="letter"></li>`).join("");
             } else {
@@ -73,7 +74,7 @@ const init = (button, usedLetter) => {
     } if (correctLetters.length === currentWord.length) {
         return gameStatus(true);
     }
-    document.querySelector(".guess-display").innerText = `${wrongGuessCount} / 6 `;
+    document.querySelector(".guess-display").innerText = `Incorrect Guesses: ${wrongGuessCount} / 6 `;
 }
 
 const gameStatus = (status) => {

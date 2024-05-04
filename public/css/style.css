@@ -26,9 +26,41 @@ body {
   background: #492201;
 }
 
+.game-start {
+  margin-top: 50px;
+}
+
+.game-start img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.game-start h4 {
+  color: white;
+  margin: 30px;
+  text-align: center;
+}
+
+.categories {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+.categories button {
+  color: white;
+  border-radius: 10px;
+  background-color: #492201;
+  border-color: gold;
+  width: calc(100% / 5 - 5px);
+  padding: 5px
+}
+
 .game-body {
   display: flex;
-  width: 750px;
   background-color: white;
   padding: 20px;
   margin-top: 20px;
@@ -40,8 +72,18 @@ h1 {
   margin-bottom: 50px;
 }
 
+.laf-box {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .laf-box img {
-  max-width: 300px;
+  max-height: 350px;
+  max-width: 250px;
+}
+
+.category-display {
+  margin-bottom: 100px;
 }
 
 .word-display {
@@ -67,29 +109,13 @@ h1 {
   margin: -40px 0 35px;
 }
 
-.categories{
-  margin-bottom: 80px;
-}
-
-.game-box .categories {
-  display: flex;
-  gap: 5px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.categories button {
-  color: white;
-  border-radius: 10px;
-  background-color: #492201;
-  border-color: gold;
-  width: calc(100% / 5 - 10px);
-  padding: 5px
-}
-
 .keyboard button[disabled] {
   opacity: 0.4;
   pointer-events: none;
+}
+
+.game-box h1 {
+  color: brown;
 }
 
 .game-box .keyboard {
@@ -130,7 +156,7 @@ h1 {
   transition: opacity 0.4s ease;
 }
 
-.game-status.show{
+.game-status.show {
   opacity: 1;
   pointer-events: auto;
 }
