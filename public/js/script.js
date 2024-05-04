@@ -8,6 +8,7 @@ function fetchRandomWord() {
             currentWord = word;
             document.querySelector(".hint-display p").innerText = hint;
             document.querySelector(".word-display").innerHTML = word.split("").map(() => `<li class="letter"></li>`).join("");
+            restartGame();
             console.log(`Word: ${word}, Hint: ${hint}`);
         })
         .catch(error => {
@@ -36,23 +37,34 @@ const init = (button, usedLetter) => {
         wrongGuessCount++;
         document.querySelector(".laf-box img").src = `../img/lep${wrongGuessCount}.jpg`;
     }
-    if(wrongGuessCount === 6){
+    if (wrongGuessCount === 6) {
         return gameStatus(false);
-    } if(correctLetters.length === currentWord.length){
+    } if (correctLetters.length === currentWord.length) {
         return gameStatus(true);
     }
     document.querySelector(".guess-display").innerText = `${wrongGuessCount} / 6 `;
 }
 
-const gameStatus = (isVictory) => {
+const gameStatus = (status) => {
     setTimeout(() => {
-        const statusOutput = isVictory ? `You found the word: ` : `The correct word was: `;
+        const statusOutput = status ? `You found the word: ` : `The correct word was: `;
         const gameStatus = document.querySelector(".game-status");
-        gameStatus.querySelector("img").src = `../img/${isVictory ? 'win' : 'loss'}.gif`;
-        gameStatus.querySelector("h4").innerText = `${isVictory ? 'Congrats!' : 'Game Over!'}`;
+        gameStatus.querySelector("img").src = `../img/${status ? 'win' : 'loss'}.gif`;
+        gameStatus.querySelector("h4").innerText = `${status ? 'Congrats!' : 'Game Over!'}`;
         gameStatus.querySelector("p").innerHTML = `${statusOutput}<b>${currentWord}</b>`;
         gameStatus.classList.add("show");
     }, 600);
+}
+
+const restartGame = () => {
+    //reset variables
+    correctLetters = [];
+    wrongGuessCount = 0;
+    document.querySelector(".laf-box img").src = '';
+    document.querySelector(".guess-display").innerText = `${wrongGuessCount} / 6`;
+    document.querySelector(".keyboard").querySelectorAll("button").forEach(btn => btn.disabled = false);
+    document.querySelector(".word-display").innerHTML = currentWord.split("").map(() => `<li class="letter"></li>`).join("");
+    document.querySelector(".game-status").classList.remove("show");
 }
 
 // create the keyboard
@@ -63,5 +75,14 @@ for (let index = 97; index <= 122; index++) {
     // e.prevent default fixed an error where page was refreshing
     button.addEventListener("click", e => init(e.target, String.fromCharCode(index), e.preventDefault()));
 }
+const button = document.createElement("button");
+button.innerText = String.fromCharCode(32);
+document.querySelector(".keyboard").appendChild(button);
+// e.prevent default fixed an error where page was refreshing
+button.addEventListener("click", e => init(e.target, String.fromCharCode(32), e.preventDefault()));
+
 fetchRandomWord();
-init();
+document.querySelector(".play-again").addEventListener('click', () => {
+    restartGame();
+    fetchRandomWord();
+});

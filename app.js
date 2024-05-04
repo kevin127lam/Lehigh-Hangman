@@ -1,5 +1,5 @@
 //Kevin Lam - khl225
-const db = require('better-sqlite3')('words.db');
+const db = require('better-sqlite3')('morewords.db');
 const express = require("express");
 const path = require("path");
 const { off } = require('process');
@@ -12,7 +12,7 @@ app.use(express.static(
 // query to get the artists from db
 // Function to fetch a random word from the database
 function getRandomWord() {
-  const query = "SELECT * FROM wordslist ORDER BY RANDOM() LIMIT 1";
+  const query = "SELECT * FROM morewords ORDER BY RANDOM() LIMIT 1";
   const word = db.prepare(query).get(); // Fetch a single random row
   return word;
 }
