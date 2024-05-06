@@ -9,20 +9,6 @@ app.use(express.static(
   path.resolve(__dirname, "public")
 ));
 
-// query to get the artists from db
-// Function to fetch a random word from the database
-// function getRandomWord() {
-//   const query = "SELECT * FROM morewords where category = 'animals' ORDER BY RANDOM() LIMIT 1";
-//   const word = db.prepare(query).get(); // Fetch a single random row
-//   return word;
-// }
-
-
-// Route to fetch a random word
-// app.get('/random-word', (req, res) => {
-//   const word = getRandomWord(); // Get the random word
-//   res.json(word); // Return the word as JSON
-// });
 
 // Route to fetch a random word
 app.get('/random-word', (req, res) => {
@@ -31,8 +17,5 @@ app.get('/random-word', (req, res) => {
   const words = db.prepare(query).get();
   res.json(words);
 });
-
-
-
 
 app.listen(3000, () => console.log("Starting up Hangman"));

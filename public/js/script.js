@@ -67,7 +67,7 @@ const init = (button, usedLetter) => {
     else {
         console.log("false");
         wrongGuessCount++;
-        document.querySelector(".laf-box img").src = `../img/lep${wrongGuessCount}.jpg`;
+        document.querySelector(".laf-box img").src = `../img/lep${wrongGuessCount}.png`;
     }
     if (wrongGuessCount === 6) {
         return gameStatus(false);
